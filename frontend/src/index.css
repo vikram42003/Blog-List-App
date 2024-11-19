@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  padding: 0 5% 5%;
+  background: url("./bgImage.jpg") no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+a:hover {
+  @apply text-electric-purple;
+}
+
+.active {
+  @apply text-electric-purple no-underline;
+}
+
+.button {
+  @apply rounded-full bg-electric-purple px-3 py-1 font-bold text-white no-underline hover:bg-electric-purple-dark hover:text-white;
+}
+
+@layer components {
+  .input {
+    @apply w-full rounded-md px-2;
+  }
+}
