@@ -1,5 +1,5 @@
-const { test, expect, beforeEach, describe } = require("@playwright/test");
-const { loginWith, createBlog, likeBlog } = require("./helper");
+import { test, expect, beforeEach, describe } from "@playwright/test"
+import { loginWith, createBlog, likeBlog } from "./helper"
 
 describe("Blog app", () => {
   beforeEach(async ({ page, request }) => {
