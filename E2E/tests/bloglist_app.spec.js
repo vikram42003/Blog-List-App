@@ -39,14 +39,14 @@ describe("Blog app", () => {
       await expect(usernameField).toBeVisible();
       await expect(passwordField).toBeVisible();
       await expect(loginButton2).toBeVisible();
-      await expect(page.url()).toBe("http://localhost:5173/login");
+      await expect(page.url()).toBe("http://localhost:3003/login");
     });
 
     test("A valid user can login", async ({ page }) => {
       await loginWith(page, "test", "12345");
 
       await expect(page.getByText("logged in as test", { exact: true })).toBeVisible();
-      await expect(page.url()).toBe("http://localhost:5173/");
+      await expect(page.url()).toBe("http://localhost:3003/");
     });
 
     test("An invalid user cannot login", async ({ page }) => {
@@ -55,7 +55,7 @@ describe("Blog app", () => {
       await expect(
         page.getByText("Could not log in - username or password is incorrect", { exact: true })
       ).toBeVisible();
-      await expect(page.url()).toBe("http://localhost:5173/login");
+      await expect(page.url()).toBe("http://localhost:3003/login");
     });
   });
 
@@ -86,7 +86,7 @@ describe("Blog app", () => {
       test("clicking a blog takes you to that blog's page", async ({ page }) => {
         await page.getByText("another blog - by me").click();
 
-        await expect(page.url()).toContain("http://localhost:5173/blogs/");
+        await expect(page.url()).toContain("http://localhost:3003/blogs/");
         await expect(page.getByText("another blog", { exact: true })).toBeVisible();
         await expect(page.getByText("by me")).toBeVisible();
       });
