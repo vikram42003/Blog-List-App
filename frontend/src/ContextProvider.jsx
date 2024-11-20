@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useShowNotification } from "./reducers/notificationReducer";
 import { useSetUser } from "./reducers/userReducer";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const Context = createContext();
 
 const ContextProvider = (props) => {
