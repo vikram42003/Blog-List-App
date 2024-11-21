@@ -37,8 +37,10 @@ jobs:
             ${{ runner.os }}-
     
       - name: Install dependencies
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
+
+      - name: FIX THAT ANNYOING ESLINT AUTO UPDATION ISSUE
+        run: cd ./frontend && npm i -D eslint@8.47.0 
 
       - name: Check style
         run: npm run lint
