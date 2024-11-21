@@ -66,3 +66,18 @@ jobs:
       SECRET: ${{ secrets.SECRET }}
       MONGODB_URL: ${{ secrets.MONGODB_URL }}
       TEST_MONGODB_URL: ${{ secrets.TEST_MONGODB_URL }}
+
+  deployment:
+    runs-on: ubuntu-20.04
+    needs: [test_and_build, end_to_end_testing]
+    if: ${{ (github.event_name == 'push') && !contains(join(github.event.commits.*.message, ', '), '#SKIP') }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.71.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Trigger deployment
+        run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
