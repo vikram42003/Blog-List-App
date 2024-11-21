@@ -62,7 +62,6 @@ jobs:
     with:
       node-version: "20.16.0"
     secrets:
-      PORT: "3003"
       SECRET: ${{ secrets.SECRET }}
       MONGODB_URL: ${{ secrets.MONGODB_URL }}
       TEST_MONGODB_URL: ${{ secrets.TEST_MONGODB_URL }}
