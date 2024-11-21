@@ -1,0 +1,53 @@
+name: Deployement pipeline
+run-name: Deployment pipeline
+
+env:
+  PORT: "3003"
+  SECRET: ${{ secrets.SECRET }}
+  MONGODB_URL: ${{ secrets.MONGODB_URL }}
+  TEST_MONGODB_URL: ${{ secrets.TEST_MONGODB_URL }}
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  test_and_buid:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.16.0"
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+            ${{ runner.os }}-
+    
+      - name: Install dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Check style
+        run: npm run lint
+
+      - name: Frontend tests
+        run: npm run test:frontend
+
+      - name: Backend tests
+        run: npm run test:backend
+
+      - name: Build
+        run: npm run build
