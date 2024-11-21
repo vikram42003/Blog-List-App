@@ -1,11 +1,5 @@
 name: Playwright Tests
 
-env:
-  PORT: "3003"
-  SECRET: ${{ secrets.SECRET }}
-  MONGODB_URL: ${{ secrets.MONGODB_URL }}
-  TEST_MONGODB_URL: ${{ secrets.TEST_MONGODB_URL }}
-
 on:
   workflow_call:
     inputs:
@@ -14,6 +8,15 @@ on:
         required: true
         default: 'lts/*'
         type: string
+    secrets:
+      PORT:
+        required: true
+      SECRET:
+        required: true
+      MONGODB_URL:
+        required: true
+      TEST_MONGODB_URL:
+        required: true
 
 jobs:
   test:
