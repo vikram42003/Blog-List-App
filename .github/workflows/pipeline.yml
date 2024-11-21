@@ -17,7 +17,6 @@ on:
 
 jobs:
   test_and_build:
-    if: false
     runs-on: ubuntu-latest
 
     steps:
@@ -56,6 +55,9 @@ jobs:
       - name: Build
         if: success()
         run: npm run build
+
+      - name: Debug test e2e
+        run: npm run test:e2e
 
   end_to_end_testing:
     # needs: test_and_build
