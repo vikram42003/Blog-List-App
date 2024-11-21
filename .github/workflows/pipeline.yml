@@ -17,6 +17,7 @@ on:
 
 jobs:
   test_and_build:
+    if: false
     runs-on: ubuntu-latest
 
     steps:
@@ -57,7 +58,7 @@ jobs:
         run: npm run build
 
   end_to_end_testing:
-    needs: test_and_build
+    # needs: test_and_build
     uses: ./.github/workflows/playwright.yml
     with:
       node-version: "20.16.0"

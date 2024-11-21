@@ -22,6 +22,7 @@ mongoose
     logger.info("Connected to MongoDB");
   })
   .catch((error) => {
+    logger.error("Connection failed! URL: ", config.MONGODB_URL);
     logger.error("Could not connect to MongoDB\n", error);
   });
 
