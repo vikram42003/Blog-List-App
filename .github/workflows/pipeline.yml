@@ -50,4 +50,5 @@ jobs:
         run: npm run test:backend
 
       - name: Build
+        if: success()
         run: npm run build
