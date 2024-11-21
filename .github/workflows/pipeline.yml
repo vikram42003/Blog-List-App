@@ -16,7 +16,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  test_and_buid:
+  test_and_build:
     runs-on: ubuntu-latest
 
     steps:
@@ -52,3 +52,10 @@ jobs:
       - name: Build
         if: success()
         run: npm run build
+
+  end_to_end_testing:
+    needs: test_and_build
+    uses: ./github/workflows/playwright.yml
+    with:
+      node-version: "20.16.0"
+
