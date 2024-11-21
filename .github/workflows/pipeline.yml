@@ -58,4 +58,3 @@ jobs:
     uses: ./.github/workflows/playwright.yml
     with:
       node-version: "20.16.0"
-
