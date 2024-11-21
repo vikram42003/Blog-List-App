@@ -66,6 +66,9 @@ jobs:
       if: steps.playwright-cache.outputs.cache-hit != 'true'
       run: npx playwright install --with-deps
 
+    - name: Install Webkit browser (since it doesn't catch)
+      run: npx playwright install-deps webkit
+
     - name: Build app
       run: npm run build
     
