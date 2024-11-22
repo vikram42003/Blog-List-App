@@ -70,7 +70,7 @@ jobs:
   deployment:
     runs-on: ubuntu-20.04
     needs: [test_and_build, end_to_end_testing]
-    if: ${{ (github.event_name == 'push') && !contains(join(github.event.commits.*.message, ', '), '#SKIP') }}
+    if: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && github.ref == 'refs/heads/main' && !contains(join(github.event.commits.*.message, ', '), '#SKIP') }}
     steps:
       - uses: actions/checkout@v4
 
