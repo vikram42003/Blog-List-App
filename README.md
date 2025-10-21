@@ -1,6 +1,6 @@
 # Blog List App 📝
 
-Welcome to the Blog List App! 🚀 This is a full-stack MERN application that allows users to share and discuss their favorite blogs.
+Welcome to the Blog List App! 🚀 This is a full-stack MERN application that allows users to share and discuss their favorite blogs. Hosted on Render at https://bloglist-0ivj.onrender.com
 
 While the app itself has a simple and focused feature set (user auth, blog management, comments, and likes), its main purpose was to serve as a deep dive into **advanced testing and DevOps principles**. The frontend was intentionally kept straightforward to put the spotlight on creating a robust, automated, and thoroughly tested application pipeline. The project may be updated with more features in the future!
 
